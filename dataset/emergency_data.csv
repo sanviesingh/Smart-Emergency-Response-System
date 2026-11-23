@@ -1,0 +1,5 @@
+id,type,location,severity,description,status
+101,Medical,North Zone,4,Cardiac emergency,Pending
+102,Fire,East Zone,3,Building smoke report,Pending
+103,Accident,South Zone,4,Road accident,Pending
+104,Rescue,West Zone,2,Stranded person,Pending
