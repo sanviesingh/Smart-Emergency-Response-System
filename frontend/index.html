@@ -1,12 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>LifeLine - Emergency Response System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeLine | Emergency Response Dashboard</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">+</span><div><strong>LifeLine</strong><small>Emergency Response Coordination</small></div></div>
+    <div class="top-right"><span class="live-dot"></span> CONTROL ROOM <span class="operator">OPERATOR DASHBOARD</span></div>
+  </header>
 
-    <h1>LifeLine</h1>
-    <p>Emergency Response System</p>
+  <main class="container">
+    <section class="hero">
+      <div><p class="eyebrow">PRIORITIZE. RESPOND. RESCUE.</p><h1>Emergency Response Dashboard</h1>
+      <p class="subtext">Register incidents, prioritize response and coordinate available resources.</p></div>
+      <div class="system-status"><span class="live-dot"></span><span id="connectionStatus">Connecting to backend…</span></div>
+    </section>
 
+    <section class="stats">
+      <article class="stat-card"><span>Total emergencies</span><strong id="totalCount">0</strong><small>All registered incidents</small></article>
+      <article class="stat-card critical"><span>Critical priority</span><strong id="criticalCount">0</strong><small>Severity level 4</small></article>
+      <article class="stat-card"><span>Pending response</span><strong id="pendingCount">0</strong><small>Awaiting assignment</small></article>
+      <article class="stat-card"><span>Available resources</span><strong id="resourceCount">0</strong><small>Ready for dispatch</small></article>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">NEW INCIDENT</p><h2>Register emergency</h2></div><span class="step">01</span></div>
+        <form id="emergencyForm">
+          <label>Emergency type<select id="type" required><option value="">Select type</option><option>Medical</option><option>Accident</option><option>Fire</option><option>Rescue</option><option>Crime</option></select></label>
+          <label>Location / zone<input id="location" required maxlength="99" placeholder="e.g. North Zone, Sector 4"></label>
+          <label>Severity<select id="severity" required><option value="">Select severity</option><option value="4">4 - Critical</option><option value="3">3 - High</option><option value="2">2 - Medium</option><option value="1">1 - Low</option></select></label>
+          <label>Description<textarea id="description" rows="3" maxlength="199" placeholder="Briefly describe the incident"></textarea></label>
+          <button class="primary-btn" type="submit">Register emergency <span>→</span></button>
+          <p class="form-note">Academic prototype only — not connected to real emergency services.</p>
+        </form>
+      </section>
+
+      <section class="panel queue-panel">
+        <div class="panel-heading"><div><p class="eyebrow">LIVE PRIORITY QUEUE</p><h2>Emergency incidents</h2></div><span class="step">02</span></div>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Incident</th><th>Priority</th><th>Status</th><th>Action</th></tr></thead><tbody id="emergencyTable"><tr><td colspan="5" class="empty">Loading incidents…</td></tr></tbody></table></div>
+        <div class="queue-foot"><span>Sorted by severity: Critical → Low</span><button id="refreshBtn" class="text-btn">↻ Refresh</button></div>
+      </section>
+    </section>
+
+    <section class="bottom-grid">
+      <section class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">FLEET OVERVIEW</p><h2>Resource availability</h2></div><span class="step">03</span></div>
+        <div id="resourceList" class="resource-list"><p class="empty">Loading resources…</p></div>
+      </section>
+      <section class="panel route-panel">
+        <div class="panel-heading"><div><p class="eyebrow">ROUTE PLANNING</p><h2>Latest assignment</h2></div><span class="step">04</span></div>
+        <div id="assignmentResult" class="route-empty"><div class="route-icon">⌁</div><p>No resource assigned yet.</p><small>Choose “Assign” on a pending emergency to calculate its route.</small></div>
+      </section>
+    </section>
+    <div id="toast" class="toast" role="status"></div>
+  </main>
+  <footer>LifeLine · Academic DSA & C++ project · Demonstration data only</footer>
+  <script src="/js/script.js"></script>
 </body>
 </html>
